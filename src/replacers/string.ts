@@ -1,7 +1,7 @@
 // TODO: add padding
-module.exports = function (flag, mod, value) {
-  const [_, padding, transform] = /^(-?\d)?([_^])?/.exec(mod) || []
-  let result = String(value)
+export default function (flag:string, mod:string, value:string):string {
+  const [_=null, padding=null, transform=null] = /^(-?\d)?([_^])?/.exec(mod) || []
+  let result:string = String(value)
   if (transform === '_') {
     result = String(value).toLowerCase()
   }
@@ -9,7 +9,7 @@ module.exports = function (flag, mod, value) {
     result = String(value).toUpperCase()
   }
   if (padding) {
-    const [_, direction, width] = /(-?)(\d+)/.exec(padding)
+    const [_=null, direction=null, width=''] = /(-?)(\d+)/.exec(padding) || []
     result = result[direction === '-' ? 'padEnd' : 'padStart'](parseInt(width, 10))
   }
   return result

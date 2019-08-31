@@ -4,6 +4,7 @@
   "description": "String formating using commonly used standards",
   "main": "index.js",
   "scripts": {
+    "build": "tsc -p .",
     "test": "node test.js"
   },
   "keywords": [
@@ -14,5 +15,9 @@
   ],
   "author": "Carl Calderon <carl.calderon@gmail.com> (https://github.com/carlcalderon)",
   "license": "MIT",
-  "repository": "github:carlcalderon/fmt"
+  "repository": "github:carlcalderon/fmt",
+  "devDependencies": {
+    "@types/node": "^12.7.3",
+    "typescript": "^3.6.2"
+  }
 }
