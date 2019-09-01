@@ -26,14 +26,13 @@ export function sprintf (format:String, ...a:Array<any>) {
   return format.replace(
     /(%%)|(?:%([+\-_^\d.:]+)?([vdsfbecxt]))/gi,
     (_, literal, mod, flag) => {
-      ++i
       if (literal) {
         return '%'
       }
 
       const method = flagMap.get(flag)
       if (method) {
-        return method(flag, mod, a[i])
+        return method(flag, mod, a[++i])
       }
       throw new SyntaxError(`Unrecognized flag "${flag}".`)
     }
