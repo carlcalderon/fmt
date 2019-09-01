@@ -7,9 +7,9 @@ export default function (_:any, mod:string, value:number|string):string {
       .map((char:string):number => char.charCodeAt(0))
     )
     return stringReplacer('s', mod, chars.map((charCode:number):string => (
-     (charCode >>> 0).toString(2)
-    )).join())
+     (charCode >>> 0).toString(2).padStart(8,'0')
+    )).join(' '))
   }
 
-  return stringReplacer('s', mod, (value >>> 0).toString(2))
+  return stringReplacer('s', mod, (value >>> 0).toString(2).padStart(8,'0'))
 }
