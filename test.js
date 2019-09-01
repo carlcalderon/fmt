@@ -1,4 +1,4 @@
-const sprintf = require('./src').sprintf
+const sprintf = require('./lib').sprintf
 
 function expect (description, result, ...a) {
   const r = sprintf.apply(this, a)
@@ -48,6 +48,15 @@ segment('types', [
 ])
 
 segment('integers', [
+  [ 'single (true)',  'true',   '%t',   true  ],
+  [ 'single (false)', 'false',  '%t',   false ],
+  [ 'single (1)',     'true',   '%t',   1     ],
+  [ 'single (0)',     'false',  '%t',   0     ],
+  [ 'padding left',   '  true', '%6t',  true  ],
+  [ 'padding right',  'true  ', '%-6t', true  ]
+])
+
+segment('integers', [
   [ 'single',         '123',    '%d',   123    ],
   [ 'decimal',        '123',    '%d',   123.45 ],
   [ 'padding left',   '   123', '%6d',  123    ],
@@ -55,10 +64,11 @@ segment('integers', [
 ])
 
 segment('binary', [
-  [ 'single',         '1111011',                          '%b',   123  ],
-  [ 'negative',       '11111111111111111111111110000101', '%b',   -123 ],
-  [ 'padding left',   ' 1111011',                         '%8b',  123  ],
-  [ 'padding right',  '1111011 ',                         '%-8b', 123  ]
+  [ 'single',         '1111011',                                      '%b',   123     ],
+  [ 'negative',       '11111111111111111111111110000101',             '%b',   -123    ],
+  [ 'string',         '01101000 01100101 01101100 01101100 01101111', '%b',   'hello' ],
+  [ 'padding left',   ' 1111011',                                     '%8b',  123     ],
+  [ 'padding right',  '1111011 ',                                     '%-8b', 123     ]
 ])
 
 segment('characters', [
@@ -92,4 +102,14 @@ segment('floats', [
   [ 'decimals',      '1.23',   '%.2f',   1.2345 ],
   [ 'padding left',  '  1.23', '%6.2f',  1.2345 ],
   [ 'padding right', '1.23  ', '%-6.2f', 1.2345 ]
+])
+
+segment('literal', [
+  [ '100%', '100%', '%d%%', 100 ],
+  [ '60% + 40%', '60% + 40%', '%d%% + %d%%', 60, 40 ],
+])
+
+segment('mixed', [
+  [ '%s %d %t',        'foo 1 true',    '%s %d %t', 'foo', 1.2, true ],
+  [ '%S %.2f %T',        'FOO 1.24 boolean',    '%S %.2f %T', 'foo', 1.235, true ]
 ])
