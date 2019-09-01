@@ -1,4 +1,4 @@
-const stringReplacer:Function = require('./string')
+import stringReplacer from './string'
 
 // TODO: value could be a string, array or even object (as json)
 export default function (_:any, mod:string, value:number):string {

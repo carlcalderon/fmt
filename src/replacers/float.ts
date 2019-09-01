@@ -1,4 +1,4 @@
-const stringReplacer:Function = require('./string')
+import stringReplacer from './string'
 
 export default function (_:any, mod:string, value:number):string {
   if (mod) {
@@ -6,9 +6,9 @@ export default function (_:any, mod:string, value:number):string {
     if (modifiers.length === 2) {
       if (modifiers[0]) { // padding
         if (modifiers[1]) { // decimals
-          return stringReplacer('s', modifiers[0], value.toFixed(Math.floor(modifiers[1])))
+          return stringReplacer('s', modifiers[0].toString(), value.toFixed(Math.floor(modifiers[1])))
         }
-        return stringReplacer('s', modifiers[0], String(value))
+        return stringReplacer('s', modifiers[0].toString(), String(value))
       }
       return String(value.toFixed(Math.floor(modifiers[1])))
     }
