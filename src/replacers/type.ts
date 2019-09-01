@@ -1,7 +1,7 @@
-const string = require('./string')
+import stringReplacer from './string'
 
-module.exports = function (_, mod, value) {
-  return string('s', mod, (
+export default function (_:any, mod:string, value:any) {
+  return stringReplacer('s', mod, (
     typeof value === 'object'
     ? (
       Array.isArray(value)

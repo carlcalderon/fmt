@@ -1,12 +1,12 @@
-const object = require('./replacers/object')
-const type = require('./replacers/type')
-const boolean = require('./replacers/boolean')
-const integer = require('./replacers/integer')
-const binary = require('./replacers/binary')
-const char = require('./replacers/char')
-const hex = require('./replacers/hex')
-const float = require('./replacers/float')
-const string = require('./replacers/string')
+import object from './replacers/object'
+import type from './replacers/type'
+import boolean from './replacers/bool'
+import integer from './replacers/integer'
+import binary from './replacers/binary'
+import char from './replacers/char'
+import hex from './replacers/hex'
+import float from './replacers/float'
+import string from './replacers/string'
 
 const flagMap = new Map([
   ['v', object],
@@ -21,33 +21,27 @@ const flagMap = new Map([
   ['s', string]
 ])
 
-function sprintf (format, ...a) {
+export function sprintf (format:String, ...a:Array<any>) {
   let i = -1
   return format.replace(
     /(%%)|(?:%([+\-_^\d.:]+)?([vdsfbecxt]))/gi,
     (_, literal, mod, flag) => {
-      ++i
       if (literal) {
         return '%'
       }
 
       const method = flagMap.get(flag)
       if (method) {
-        return method(flag, mod, a[i])
+        return method(flag, mod, a[++i])
       }
       throw new SyntaxError(`Unrecognized flag "${flag}".`)
     }
   )
 }
 
-function printf (format, ...a) {
+export function printf (format:String, ...a:Array<any>) {
   if (process) {
     return process.stdout.write(sprintf(format, ...a))
   }
   return console.log(sprintf(format, ...a))
-}
-
-module.exports = {
-  sprintf,
-  printf
 }

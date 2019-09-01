@@ -1,4 +1,4 @@
-module.exports = function (flag, mod, value) {
+export default function (_:any, mod:string, value:object):string {
   if (mod === '-') {
     return JSON.stringify(Object.values(value))
   }
