@@ -16,10 +16,12 @@ export default [
         file: pkg.main,
         name: pkg.name,
         format: 'umd',
+        sourcemap: true
       },
       {
         file: pkg.module,
         format: 'es',
+        sourcemap: true
       }
     ],
     plugins
