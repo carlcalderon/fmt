@@ -1,6 +1,6 @@
 {
   "name": "fmt",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "String formating using commonly used standards",
   "main": "./lib/umd/index.js",
   "module": "./lib/esm5/index.js",
