@@ -64,11 +64,11 @@ segment('integers', [
 ])
 
 segment('binary', [
-  [ 'single',         '1111011',                                      '%b',   123     ],
+  [ 'single',         '01111011',                                     '%b',   123     ],
   [ 'negative',       '11111111111111111111111110000101',             '%b',   -123    ],
   [ 'string',         '01101000 01100101 01101100 01101100 01101111', '%b',   'hello' ],
-  [ 'padding left',   ' 1111011',                                     '%8b',  123     ],
-  [ 'padding right',  '1111011 ',                                     '%-8b', 123     ]
+  [ 'padding left',   ' 01111011',                                    '%9b',  123     ],
+  [ 'padding right',  '01111011 ',                                    '%-9b', 123     ]
 ])
 
 segment('characters', [
