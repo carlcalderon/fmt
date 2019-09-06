@@ -6,6 +6,7 @@
   "module": "./lib/esm5/index.js",
   "typings": "./lib/types/index.d.ts",
   "scripts": {
+    "clean": "shx rm -rf lib/",
     "build": "tsc && rollup -c",
     "test": "node test.js"
   },
@@ -22,6 +23,7 @@
     "@types/node": "^12.7.3",
     "rollup": "^1.20.3",
     "rollup-plugin-typescript2": "^0.24.0",
+    "shx": "^0.3.2",
     "typescript": "^3.6.2"
   }
 }
