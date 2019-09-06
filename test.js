@@ -1,4 +1,4 @@
-const sprintf = require('./lib').sprintf
+const sprintf = require('./lib/umd').sprintf
 
 function expect (description, result, ...a) {
   const r = sprintf.apply(this, a)
