@@ -82,11 +82,11 @@ segment('integers', [
 ])
 
 segment('binary', [
-  [ 'single',         '01111011',                                     '%b',   123     ],
-  [ 'negative',       '11111111111111111111111110000101',             '%b',   -123    ],
-  [ 'string',         '01101000 01100101 01101100 01101100 01101111', '%b',   'hello' ],
-  [ 'padding left',   ' 01111011',                                    '%9b',  123     ],
-  [ 'padding right',  '01111011 ',                                    '%-9b', 123     ]
+  [ 'single',         '01111011',                            '%b',   123    ],
+  [ 'negative',       '11111111111111111111111110000101',    '%b',   -123   ],
+  [ 'string',         '01101000 01100101 01101100 01101100', '%b',   'hell' ],
+  [ 'padding left',   ' 01111011',                           '%9b',  123    ],
+  [ 'padding right',  '01111011 ',                           '%-9b', 123    ]
 ])
 
 segment('characters', [
@@ -132,8 +132,8 @@ segment('literal', [
 ])
 
 segment('mixed', [
-  [ '%s %d %t',        'foo 1 true',    '%s %d %t', 'foo', 1.2, true ],
-  [ '%S %.2f %T',        'FOO 1.24 boolean',    '%S %.2f %T', 'foo', 1.235, true ]
+  [ '%s %d %t',   'foo 1 true',       '%s %d %t',   'foo', 1.2, true   ],
+  [ '%S %.2f %T', 'FOO 1.24 boolean', '%S %.2f %T', 'foo', 1.235, true ]
 ])
 
 report()
