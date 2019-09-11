@@ -6,6 +6,7 @@ String formating using commonly used standards
 - Commonly used formatting rules
 - Wide support
 - Left and right padding
+- UMD and ES module versions available
 
 ## Installation
 
