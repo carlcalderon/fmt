@@ -1,4 +1,3 @@
-// TODO: add padding
 export default function (flag:string, mod:string, value:string):string {
   const [_=null, padding=null, transform=null] = /^(-?\d)?([_^])?/.exec(mod) || []
   let result:string = String(value)
