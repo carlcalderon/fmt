@@ -1,5 +1,8 @@
 const sprintf = require('./lib/umd').sprintf
 
+let total = 0
+let passed = 0
+
 function expect (description, result, ...a) {
   const r = sprintf.apply(this, a)
   if (r !== result) {
@@ -25,10 +28,22 @@ function segment (label, list) {
   console.log(label.toUpperCase())
   const r = batch(list)
   console.log(`\n\tPassed: ${r.passed} Failed: ${r.total - r.passed}`)
+  total += r.total
+  passed += r.passed
   if (r.total !== r.passed) {
     console.log('\t\033[31mFAILED\033[0m\n')
   } else {
     console.log('\t\033[32mPASSED\033[0m\n')
+  }
+}
+
+function report () {
+  if (0 === total - passed) {
+    console.error('\033[32mPASSED\033[0m')
+    console.error(`${passed} / ${total} tests passed`)
+  } else {
+    console.error('\033[31mFAILED\033[0m')
+    console.error(`${passed} / ${total} tests passed`)
   }
 }
 
@@ -120,3 +135,7 @@ segment('mixed', [
   [ '%s %d %t',        'foo 1 true',    '%s %d %t', 'foo', 1.2, true ],
   [ '%S %.2f %T',        'FOO 1.24 boolean',    '%S %.2f %T', 'foo', 1.235, true ]
 ])
+
+report()
+
+process.exit(Math.min(total - passed, 1))
