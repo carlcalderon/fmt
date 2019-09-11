@@ -33,8 +33,11 @@ function segment (label, list) {
 }
 
 segment('objects', [
-  [ 'single', '{"foo":"bar","baz":true}', '%v',  { foo: 'bar', baz: true } ],
-  [ 'values', '["bar",true]',             '%-v', { foo: 'bar', baz: true } ]
+  [ 'single',  '{"foo":"bar","baz":true}', '%v',  { foo: 'bar', baz: true } ],
+  [ 'values',  '["bar",true]',             '%-v', { foo: 'bar', baz: true } ],
+  [ 'string',  'hello world',              '%v',  'hello world'             ],
+  [ 'boolean', 'false',                    '%v',  false                     ],
+  [ 'number',  '1.23',                     '%v',  1.23                      ]
 ])
 
 segment('types', [

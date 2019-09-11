@@ -23,7 +23,7 @@ Each flag is defined using a `%` character followed by the flag and modifiers.
 
 |flag|modifiers|description|Notes|
 |----|:--------|:----------|:----|
-|v||Object|JSON format|
+|v||Object|Default output if type is recognized, JSON format otherwise|
 |T||Type|`typeof` representation, unless `array`|
 |t||Boolean|Accepts any type such as `0` for false|
 |d||Integer|Any type of number|
