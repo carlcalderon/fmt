@@ -15,6 +15,7 @@ const flagMap = new Map([
   ['d', integer],
   ['b', binary],
   ['c', char],
+  ['X', hex],
   ['x', hex],
   ['f', float],
   ['Q', string],

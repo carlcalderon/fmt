@@ -97,10 +97,12 @@ segment('characters', [
 ])
 
 segment('hexadecimal', [
-  [ 'single',         'A2',       '%x',       162           ],
-  [ 'multiple',       'A2 A3 A4', '%x %x %x', 162, 163, 164 ],
-  [ 'padding left',   ' A2',      '%3x',      162           ],
-  [ 'padding right',  'A2 ',      '%-3x',     162           ]
+  [ 'single',             'a2',       '%x',       162           ],
+  [ 'multiple',           'a2 a3 a4', '%x %x %x', 162, 163, 164 ],
+  [ 'single uppercase',   'A2',       '%X',       162           ],
+  [ 'multiple uppercase', 'A2 A3 A4', '%X %X %X', 162, 163, 164 ],
+  [ 'padding left',       ' a2',      '%3x',      162           ],
+  [ 'padding right',      'a2 ',      '%-3x',     162           ]
 ])
 
 segment('strings', [
