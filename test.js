@@ -89,15 +89,19 @@ segment('hexadecimal', [
 ])
 
 segment('strings', [
-  [ 'single',          'abc',         '%s',         'abc'        ],
-  [ 'padding left',    '   abc',      '%6s',        'abc'        ],
-  [ 'padding right',   'abc   ',      '%-6s',       'abc'        ],
-  [ 'insert',          'aBcdEfgHi',   'aBc%sgHi',   'dEf'        ],
-  [ 'lowercase',       'abcdefghi',   'abc%_sghi',  'DEF'        ],
-  [ 'whitespace',      'abc def ghi', 'abc %s ghi', 'def'        ],
-  [ 'uppercase (%S)',  'abcDEFghi',   'abc%Sghi',   'def'        ],
-  [ 'uppercase (%^s)', 'abcDEFghi',   'abc%^sghi',  'def'        ],
-  [ 'multiple',        'hello!',      '%s%s',       'hel', 'lo!' ]
+  [ 'single',           'abc',         '%s',         'abc'        ],
+  [ 'quotes',           '"abc"',       '%q',         'abc'        ],
+  [ 'padding left',     '   abc',      '%6s',        'abc'        ],
+  [ 'padding right',    'abc   ',      '%-6s',       'abc'        ],
+  [ 'insert',           'aBcdEfgHi',   'aBc%sgHi',   'dEf'        ],
+  [ 'lowercase',        'abcdefghi',   'abc%_sghi',  'DEF'        ],
+  [ 'lowercase quotes', 'abc"def"ghi', 'abc%_qghi',  'DEF'        ],
+  [ 'whitespace',       'abc def ghi', 'abc %s ghi', 'def'        ],
+  [ 'uppercase (%S)',   'abcDEFghi',   'abc%Sghi',   'def'        ],
+  [ 'uppercase (%Q)',   'abc"DEF"ghi', 'abc%Qghi',   'def'        ],
+  [ 'uppercase (%^s)',  'abcDEFghi',   'abc%^sghi',  'def'        ],
+  [ 'uppercase (%^q)',  'abc"DEF"ghi', 'abc%^qghi',  'def'        ],
+  [ 'multiple',         'hello!',      '%s%s',       'hel', 'lo!' ]
 ])
 
 segment('floats', [

@@ -32,6 +32,7 @@ Each flag is defined using a `%` character followed by the flag and modifiers.
 |x||Hexadecimal||
 |f|`.<int>`|Float|Modifier defines number of decimals|
 |s|`^`, `_`|String|Uppercase shortand defined as uppercase `S`|
+|q|`^`, `_`|String|Quoted escaped string|
 |%||Literal `%`||
 
 
