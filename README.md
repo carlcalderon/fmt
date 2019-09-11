@@ -60,7 +60,7 @@ fmt.sprintf('Type: %T', 123)  // output: "Type: number"
 fmt.sprintf('This is %t', true)  // output: "This is true"
 
 // hexadecimal
-fmt.sprintf('162 in hex is %x', 162)  // output: "162 in hex is A2"
+fmt.sprintf('162 in hex is %X', 162)  // output: "162 in hex is A2"
 
 // strings
 fmt.sprintf('%s %S', 'hello', 'world')  // output: "hello WORLD"
