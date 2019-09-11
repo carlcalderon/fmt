@@ -47,7 +47,7 @@ segment('types', [
   [ 'padding right', 'array   ', '%-8T',  []      ]
 ])
 
-segment('integers', [
+segment('booleans', [
   [ 'single (true)',  'true',   '%t',   true  ],
   [ 'single (false)', 'false',  '%t',   false ],
   [ 'single (1)',     'true',   '%t',   1     ],
