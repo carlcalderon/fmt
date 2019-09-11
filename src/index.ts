@@ -45,3 +45,8 @@ export function printf (format:String, ...a:Array<any>) {
   }
   return console.log(sprintf(format, ...a))
 }
+
+export default {
+  sprintf,
+  printf
+}
