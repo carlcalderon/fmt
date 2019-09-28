@@ -1,5 +1,11 @@
+*.log
+.idea
 .DS_Store
+.cache
 .vscode
 node_modules
-build/
+
 lib/
+
+*.tgz
+package

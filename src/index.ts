@@ -15,8 +15,11 @@ const flagMap = new Map([
   ['d', integer],
   ['b', binary],
   ['c', char],
+  ['X', hex],
   ['x', hex],
   ['f', float],
+  ['Q', string],
+  ['q', string],
   ['S', string],
   ['s', string]
 ])
@@ -24,7 +27,7 @@ const flagMap = new Map([
 export function sprintf (format:String, ...a:Array<any>) {
   let i = -1
   return format.replace(
-    /(%%)|(?:%([+\-_^\d.:]+)?([vdsfbecxt]))/gi,
+    /(%%)|(?:%([+\-_^\d.:]+)?([vdsfbecxtq]))/gi,
     (_, literal, mod, flag) => {
       if (literal) {
         return '%'
@@ -44,4 +47,9 @@ export function printf (format:String, ...a:Array<any>) {
     return process.stdout.write(sprintf(format, ...a))
   }
   return console.log(sprintf(format, ...a))
+}
+
+export default {
+  sprintf,
+  printf
 }
