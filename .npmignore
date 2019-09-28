@@ -7,3 +7,4 @@ docs
 examples
 *.tgz
 package
+rollup.config.js
