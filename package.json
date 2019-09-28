@@ -1,5 +1,5 @@
 {
-  "name": "fmt",
+  "name": "@paydirt/fmt",
   "version": "0.2.1",
   "description": "String formating using commonly used standards",
   "main": "./lib/umd/index.js",
