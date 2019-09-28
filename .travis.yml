@@ -6,5 +6,7 @@ notifications:
   email: false
 env:
   - CI=true
-script:
+before_script:
   - npm run build
+script:
+  - npm test
