@@ -102,7 +102,10 @@ segment('hexadecimal', [
   [ 'single uppercase',   'A2',       '%X',       162           ],
   [ 'multiple uppercase', 'A2 A3 A4', '%X %X %X', 162, 163, 164 ],
   [ 'padding left',       ' a2',      '%3x',      162           ],
-  [ 'padding right',      'a2 ',      '%-3x',     162           ]
+  [ 'padding right',      'a2 ',      '%-3x',     162           ],
+  [ 'string',             '00680065006c006c006f00200077006f0072006c00640021', '%x', 'hello world!' ],
+  [ 'string uppercase',   '00680065006C006C006F00200077006F0072006C00640021', '%X', 'hello world!' ],
+  [ 'katana',             '52000020006f00720020304b305f306a',                 '%x', '刀 or かたな'   ],
 ])
 
 segment('strings', [
