@@ -25,16 +25,16 @@ Each flag is defined using a `%` character followed by the flag and modifiers.
 %[padding][modifiers]<flag>
 ```
 
-|flag|modifiers|description|Notes|
+|Flag|Modifiers|Description|Notes|
 |----|:--------|:----------|:----|
 |v||Object|Default output if type is recognized, JSON format otherwise|
 |T||Type|`typeof` representation, unless `array`|
 |t||Boolean|Accepts any type such as `0` for false|
-|d||Integer|Any type of number|
+|d|`+`|Integer|Any type of number. `+` modifier adds sign|
 |b||Binary|If passed a string, each character is separated by a single ` `|
 |c||Character|as `charCode`|
 |x||Hexadecimal|Uppercase shortand defined as uppercase `X`|
-|f|`.<int>`|Float|Modifier defines number of decimals|
+|f|`+`, `.<int>`|Float|See `d` flag. `<int>` defines number of decimals|
 |s|`^`, `_`|String|Uppercase shortand defined as uppercase `S`|
 |q|`^`, `_`|String|Quoted escaped string|
 |%||Literal `%`||

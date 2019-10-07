@@ -77,6 +77,8 @@ segment('booleans', [
 segment('integers', [
   [ 'single',         '123',    '%d',   123    ],
   [ 'decimal',        '123',    '%d',   123.45 ],
+  [ 'sign negative',  '-123',   '%+d',  -123   ],
+  [ 'sign positive',  '+123',   '%+d',  123    ],
   [ 'padding left',   '   123', '%6d',  123    ],
   [ 'padding right',  '123   ', '%-6d', 123    ]
 ])
@@ -127,6 +129,8 @@ segment('strings', [
 segment('floats', [
   [ 'single',        '1.2',    '%f',     1.2    ],
   [ 'decimals',      '1.23',   '%.2f',   1.2345 ],
+  [ 'sign negative', '-1.23',  '%+.2f',  -1.234 ],
+  [ 'sign positive', '+1.23',  '%+.2f',  1.2345 ],
   [ 'padding left',  '  1.23', '%6.2f',  1.2345 ],
   [ 'padding right', '1.23  ', '%-6.2f', 1.2345 ]
 ])

@@ -45,7 +45,7 @@ export function sprintf (format:String, ...a:Array<any>) {
       }
 
       const mods:modifiers = {
-        sign,
+        sign: Boolean(sign),
         transform,
         negative: Boolean(negative),
         padding: parseInt(padding, 10),
