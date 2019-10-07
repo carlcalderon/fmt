@@ -1,9 +1,10 @@
 import stringReplacer from './string'
+import modifiers from '../modifiers'
 
 // TODO: value could be an array or even object (as json)
-export default function (flag:string, mod:string, value:number|string):string {
+export default function (flag:string, mods:modifiers, value:number|string):string {
   if (typeof value === 'number') {
-    return stringReplacer(flag === 'X' ? 'S' : 's', mod, value.toString(16))
+    return stringReplacer(flag === 'X' ? 'S' : 's', mods, value.toString(16))
   }
 
   const len:number = value.length
@@ -12,5 +13,5 @@ export default function (flag:string, mod:string, value:number|string):string {
     result += ('000' + value.charCodeAt(i).toString(16)).slice(-4)
   }
 
-  return stringReplacer(flag === 'X' ? 'S' : 's', mod, result)
+  return stringReplacer(flag === 'X' ? 'S' : 's', mods, result)
 }

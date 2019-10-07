@@ -1,7 +1,8 @@
 import stringReplacer from './string'
+import modifiers from '../modifiers'
 
-export default function (_:any, mod:string, value:any) {
-  return stringReplacer('s', mod, (
+export default function (_:any, mods:modifiers, value:any) {
+  return stringReplacer('s', mods, (
     typeof value === 'object'
     ? (
       Array.isArray(value)
