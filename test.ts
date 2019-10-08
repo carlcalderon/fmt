@@ -1,10 +1,15 @@
 const sprintf = require('./lib/umd').sprintf
 
-let total = 0
-let passed = 0
+interface result {
+  total:number;
+  passed:number;
+}
 
-function expect (description, result, ...a) {
-  const r = sprintf.apply(this, a)
+let total:number = 0
+let passed:number = 0
+
+function expect (description:string, result:string, ...a:Array<any>):boolean {
+  const r:string = sprintf.apply(this, a)
   if (r !== result) {
     console.log('\033[30;41m FAIL \033[0m\t\033[31m' + description + '\033[0m')
     console.log('\t\t' + a.join(', '))
@@ -15,18 +20,18 @@ function expect (description, result, ...a) {
   return true
 }
 
-function batch (list) {
+function batch (list:Array<Array<any>>):result {
   return {
     total: list.length,
-    passed: list.reduce((acc, test) => (
+    passed: list.reduce((acc:number, test:Array<any>):number => (
       (expect.apply(this, test) ? 1 : 0) + acc
     ), 0)
   }
 }
 
-function segment (label, list) {
+function segment (label:string, list:Array<Array<any>>):void {
   console.log(label.toUpperCase())
-  const r = batch(list)
+  const r:result = batch(list)
   console.log(`\n\tPassed: ${r.passed} Failed: ${r.total - r.passed}`)
   total += r.total
   passed += r.passed
@@ -37,7 +42,7 @@ function segment (label, list) {
   }
 }
 
-function report () {
+function report ():void {
   if (0 === total - passed) {
     console.error('\033[32mPASSED\033[0m')
     console.error(`${passed} / ${total} tests passed`)
