@@ -1,6 +1,28 @@
 import stringReplacer from './string'
+import modifiers from '../modifiers'
 
-// TODO: value could be a string, array or even object (as json)
-export default function (flag:string, mod:string, value:number):string {
-  return stringReplacer(flag === 'X' ? 'S' : 's', mod, value.toString(16))
+export default function (flag:string, mods:modifiers, value:any):string {
+  let result:string = ''
+
+  const as16BitHex = function (input:string):string {
+    let hex:string = ''
+    const len:number = input.length
+    for (let i = 0; i < len; i++) {
+      hex += ('000' + input.charCodeAt(i).toString(16)).slice(-4)
+    }
+    return hex
+  }
+
+  switch (typeof value) {
+    case 'number':
+      result = value.toString(16)
+      break
+    case 'string':
+      result = as16BitHex(value)
+      break
+    default:
+      result = as16BitHex(JSON.stringify(value))
+  }
+
+  return stringReplacer(flag === 'X' ? 'S' : 's', mods, result)
 }

@@ -1,19 +1,19 @@
-export default function (flag:string, mod:string, value:string):string {
-  const [_=null, padding=null, transform=null] = /^(-?\d)?([_^])?/.exec(mod) || []
+import modifiers from '../modifiers'
+
+export default function (flag:string, mods:modifiers, value:string):string {
   const quotes = flag.toLowerCase() === 'q'
 
   let result:string = String(value)
-  if (transform === '_') {
+  if (mods.transform === '_') {
     result = String(value).toLowerCase()
   }
 
-  if (transform === '^' || flag === 'S' || flag === 'Q') {
+  if (mods.transform === '^' || flag === 'S' || flag === 'Q') {
     result = String(value).toUpperCase()
   }
 
-  if (padding) {
-    const [_=null, direction=null, width=''] = /(-?)(\d+)/.exec(padding) || []
-    result = result[direction === '-' ? 'padEnd' : 'padStart'](parseInt(width, 10))
+  if (mods.padding) {
+    result = result[mods.negative ? 'padEnd' : 'padStart'](mods.padding)
   }
 
   if (quotes) {

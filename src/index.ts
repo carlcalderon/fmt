@@ -8,6 +8,8 @@ import hex from './replacers/hex'
 import float from './replacers/float'
 import string from './replacers/string'
 
+import modifiers from './modifiers'
+
 const flagMap = new Map([
   ['v', object],
   ['T', type],
@@ -27,15 +29,32 @@ const flagMap = new Map([
 export function sprintf (format:String, ...a:Array<any>) {
   let i = -1
   return format.replace(
-    /(%%)|(?:%([+\-_^\d.:]+)?([vdsfbecxtq]))/gi,
-    (_, literal, mod, flag) => {
+    /(%%)|(?:%(?:(\+)?([\^_])?(\-)?(\d+)?(?:\.(\d+))?)?([vdsfbecxtq]))/gi,
+    (
+      _,
+      literal,
+      sign,
+      transform,
+      negative,
+      padding,
+      precision,
+      flag
+    ) => {
       if (literal) {
         return '%'
       }
 
+      const mods:modifiers = {
+        sign: Boolean(sign),
+        transform,
+        negative: Boolean(negative),
+        padding: parseInt(padding, 10),
+        precision: parseInt(precision, 10)
+      }
+
       const method = flagMap.get(flag)
       if (method) {
-        return method(flag, mod, a[++i])
+        return method(flag, mods, a[++i])
       }
       throw new SyntaxError(`Unrecognized flag "${flag}".`)
     }

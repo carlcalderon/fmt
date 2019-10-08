@@ -77,6 +77,8 @@ segment('booleans', [
 segment('integers', [
   [ 'single',         '123',    '%d',   123    ],
   [ 'decimal',        '123',    '%d',   123.45 ],
+  [ 'sign negative',  '-123',   '%+d',  -123   ],
+  [ 'sign positive',  '+123',   '%+d',  123    ],
   [ 'padding left',   '   123', '%6d',  123    ],
   [ 'padding right',  '123   ', '%-6d', 123    ]
 ])
@@ -102,7 +104,14 @@ segment('hexadecimal', [
   [ 'single uppercase',   'A2',       '%X',       162           ],
   [ 'multiple uppercase', 'A2 A3 A4', '%X %X %X', 162, 163, 164 ],
   [ 'padding left',       ' a2',      '%3x',      162           ],
-  [ 'padding right',      'a2 ',      '%-3x',     162           ]
+  [ 'padding right',      'a2 ',      '%-3x',     162           ],
+  [ 'string',             '00680065006c006c006f00200077006f0072006c00640021', '%x', 'hello world!' ],
+  [ 'string uppercase',   '00680065006C006C006F00200077006F0072006C00640021', '%X', 'hello world!' ],
+  [ 'katana',             '52000020006f00720020304b305f306a',                 '%x', '刀 or かたな'  ],
+  [ 'object',             '007b002200610022003a0031002c002200620022003a0074007200750065007d', '%x', { a: 1, b: true }      ],
+  [ 'array',              '005B002200610022002C0031002C002200620022002C0074007200750065005D', '%X', [ 'a', 1, 'b', true ]  ],
+  [ 'boolean',            '0074007200750065', '%x', true  ],
+  [ 'number',             '7B',               '%X', 123   ]
 ])
 
 segment('strings', [
@@ -124,6 +133,8 @@ segment('strings', [
 segment('floats', [
   [ 'single',        '1.2',    '%f',     1.2    ],
   [ 'decimals',      '1.23',   '%.2f',   1.2345 ],
+  [ 'sign negative', '-1.23',  '%+.2f',  -1.234 ],
+  [ 'sign positive', '+1.23',  '%+.2f',  1.2345 ],
   [ 'padding left',  '  1.23', '%6.2f',  1.2345 ],
   [ 'padding right', '1.23  ', '%-6.2f', 1.2345 ]
 ])
