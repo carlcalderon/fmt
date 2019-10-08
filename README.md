@@ -22,7 +22,7 @@ npm install @paydirt/fmt
 Each flag is defined using a `%` character followed by the flag and modifiers.
 
 ```
-%[padding][modifiers]<flag>
+%[sign][padding][modifiers]<flag>
 ```
 
 |Flag|Modifiers|Description|Notes|
