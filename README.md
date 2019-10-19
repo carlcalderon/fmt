@@ -45,6 +45,9 @@ Each flag is defined using a `%` character followed by the flag and modifiers.
 ```javascript
 import fmt from '@paydirt/fmt'
 
+// basic usage
+fmt.sprintf('%s:%.2f %s', 'Milk', 0.5, 'liter')  // output: "Milk: 0.50 liter"
+
 // floats
 fmt.sprintf('Value: %.2f', 1.234)  // output: "Value: 1.23"
 
