@@ -33,9 +33,9 @@ Each flag is defined using a `%` character followed by the flag and modifiers.
 |d|`+`|Integer|Any type of number. `+` modifier adds sign|
 |b||Binary|If passed a string, each character is separated by a single ` `|
 |c||Character|as `charCode`|
-|x||Hexadecimal|Uppercase shortand defined as uppercase `X`|
+|x||Hexadecimal|Uppercase shorthand defined as uppercase `X`|
 |f|`+`, `.<int>`|Float|See `d` flag. `<int>` defines number of decimals|
-|s|`^`, `_`|String|Uppercase shortand defined as uppercase `S`|
+|s|`^`, `_`|String|Uppercase shorthand defined as uppercase `S`|
 |q|`^`, `_`|String|Quoted escaped string|
 |%||Literal `%`||
 
