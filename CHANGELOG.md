@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.2] - TBD
+- Separate methods from index
+
 ## [0.2.1] - 2019-10-09
 ### Added
 - String to HEX conversion
