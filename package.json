@@ -1,6 +1,6 @@
 {
   "name": "@paydirt/fmt",
-  "version": "0.2.1+deps.0",
+  "version": "0.2.2",
   "description": "String formating using commonly used standards",
   "main": "./lib/umd/index.js",
   "module": "./lib/esm5/index.js",
@@ -9,14 +9,19 @@
     "clean": "shx rm -rf lib/",
     "prebuild": "npm run clean",
     "build": "tsc && rollup -c",
-    "test": "node test.js",
+    "test": "tsc --outFile /dev/stdout test.ts | node -",
     "verify": "npm run build && npm test && npm publish --dry-run"
   },
   "keywords": [
+    "fmt",
+    "data",
+    "table",
     "string",
     "format",
-    "formating",
-    "fmt"
+    "rewrite",
+    "console",
+    "formatter",
+    "formatting"
   ],
   "author": "Carl Calderon <carl.calderon@gmail.com> (https://github.com/carlcalderon)",
   "license": "MIT",
