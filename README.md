@@ -17,7 +17,17 @@ String formating using commonly used standards
 npm install @paydirt/fmt
 ```
 
-## Flags
+## `fmt.sprintf`
+
+```javascript
+const a = 12.3
+const b = 24.6
+fmt.sprintf('%.2f/%.2f is %d%%', a, b, a/b*100)
+// Output:
+// 12.30/24.60 is 50%
+```
+
+### Flags
 
 Each flag is defined using a `%` character followed by the flag and modifiers.
 
@@ -40,7 +50,9 @@ Each flag is defined using a `%` character followed by the flag and modifiers.
 |%||Literal `%`||
 
 
-## Usage
+### Usage
+
+`fmt.sprintf(<format>, ...values)`
 
 ```javascript
 import fmt from '@paydirt/fmt'
@@ -73,12 +85,12 @@ fmt.sprintf('162 in hex is %X', 162)  // output: "162 in hex is A2"
 fmt.sprintf('%s %S', 'hello', 'world')  // output: "hello WORLD"
 ```
 
-### Padding
+#### Padding
 
-`fmt` supports both left and right whitespace padding. The padding is defined as
-the "total" amount of characters the value will consume. For example, a padding
-of `8` will dedicate 8 characters to the value where all remaining characters
-will be filled with spaces.
+`fmt.sprintf` supports both left and right whitespace padding. The padding is
+defined as the "total" amount of characters the value will consume. For example,
+a padding of `8` will dedicate 8 characters to the value where all remaining
+characters will be filled with spaces.
 
 _Tip: Padding is especially useful when creating tables._
 
@@ -99,4 +111,132 @@ fmt.sprintf('%-6s | %5.1f dl', 'Flour', 2.5)
 // Eggs   |     2
 // Milk   |   1.5 liter
 // Flour  |   2.5 dl
+```
+
+## `fmt.printf`
+
+`fmt.printf` is a shorthand for `fmt.sprintf` which also output to `console.log`
+or `process.stdout`.
+
+## `fmt.table`
+
+The `fmt` package may also format larger amounts of data as tables.
+
+`fmt.table(<labels>, <data>[, configuration])`
+
+```javascript
+const labels = {
+  'name': { label: 'Movie Name' },
+  'release': { label: 'Release' },
+  'director': { label: 'Director' }
+}
+
+const rows = [
+  { name: 'Toy Story', release: 1995, director: 'John Lasseter' },
+  { name: 'Monsters, Inc', release: 2001, director: 'Pete Docter' },
+  { name: 'Finding Nemo', release: 2003, director: 'Andrew Stanton' }
+]
+
+fmt.table(labsls, rows)
+
+// Output:
+// ┏━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━┓
+// ┃ Movie Name    ┃ Release ┃ Director       ┃
+// ┡━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━━━┩
+// │ Toy Story     │ 1995    │ John Lasseter  │
+// │ Monsters, Inc │ 2001    │ Pete Docter    │
+// │ Finding Nemo  │ 2003    │ Andrew Stanton │
+// └───────────────┴─────────┴────────────────┘
+```
+
+### Configuration
+
+#### Labels
+
+Labels are the column headers. You may map a key-value pair to a readable label.
+In the above example; the key `name` is mapped to the column labeled
+`Movie Name` and so on.
+
+Each label has the following options:
+
+```javascript
+const myLabels = {
+  'releasedAt': {
+    label: 'Released At',
+    align: 'center', // Optional - left, center or right
+    format: (dateValue) => new Date(dateValue).toString() // Optional
+  }
+}
+```
+
+#### Configuration
+
+You may alter the appearance of the table with these options.
+
+```javascript
+const myConfiguration = {
+  padding: 1, // Whitespace on either side of every column
+  palette: fmt.TABLE_PALETTE_ROUNDED, // Palette used for styling
+  silent: false // If silent is true, fmt.table will not output to console
+}
+```
+
+##### Palettes
+
+The `fmt` package provides a set of palettes (or themes) by default.
+
+```
+# fmt.TABLE_PALETTE_DEFAULT
+┏━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━┓
+┃ Movie Name    ┃ Release ┃ Director       ┃
+┡━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━━━┩
+│ Toy Story     │ 1995    │ John Lasseter  │
+│ Monsters, Inc │ 2001    │ Pete Docter    │
+│ Finding Nemo  │ 2003    │ Andrew Stanton │
+└───────────────┴─────────┴────────────────┘
+
+# fmt.TABLE_PALETTE_HEAVY
+┏━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━┓
+┃ Movie Name    ┃ Release ┃ Director       ┃
+┣━━━━━━━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━━━━━━━━┫
+┃ Toy Story     ┃ 1995    ┃ John Lasseter  ┃
+┃ Monsters, Inc ┃ 2001    ┃ Pete Docter    ┃
+┃ Finding Nemo  ┃ 2003    ┃ Andrew Stanton ┃
+┗━━━━━━━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━━━━━━━━┛
+
+# fmt.TABLE_PALETTE_THIN
+┌───────────────┬─────────┬────────────────┐
+│ Movie Name    │ Release │ Director       │
+├───────────────┼─────────┼────────────────┤
+│ Toy Story     │ 1995    │ John Lasseter  │
+│ Monsters, Inc │ 2001    │ Pete Docter    │
+│ Finding Nemo  │ 2003    │ Andrew Stanton │
+└───────────────┴─────────┴────────────────┘
+
+# fmt.TABLE_PALETTE_ROUNDED
+╭───────────────┬─────────┬────────────────╮
+│ Movie Name    │ Release │ Director       │
+├───────────────┼─────────┼────────────────┤
+│ Toy Story     │ 1995    │ John Lasseter  │
+│ Monsters, Inc │ 2001    │ Pete Docter    │
+│ Finding Nemo  │ 2003    │ Andrew Stanton │
+╰───────────────┴─────────┴────────────────╯
+
+# fmt.TABLE_PALETTE_SEMI_ROUNDED
+┏━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━┓
+┃ Movie Name    ┃ Release ┃ Director       ┃
+┡━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━━━┩
+│ Toy Story     │ 1995    │ John Lasseter  │
+│ Monsters, Inc │ 2001    │ Pete Docter    │
+│ Finding Nemo  │ 2003    │ Andrew Stanton │
+╰───────────────┴─────────┴────────────────╯
+
+# fmt.TABLE_PALETTE_ASCII
++---------------+---------+----------------+
+| Movie Name    | Release | Director       |
++---------------+---------+----------------+
+| Toy Story     | 1995    | John Lasseter  |
+| Monsters, Inc | 2001    | Pete Docter    |
+| Finding Nemo  | 2003    | Andrew Stanton |
++---------------+---------+----------------+
 ```
