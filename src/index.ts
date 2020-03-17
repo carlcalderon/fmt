@@ -1,2 +1,10 @@
 export { default as sprintf } from './sprintf'
 export { default as printf } from './printf'
+export { default as table } from './table/index'
+
+export { HEAVY        as TABLE_PALETTE_HEAVY        } from './table/palettes'
+export { DEFAULT      as TABLE_PALETTE_DEFAULT      } from './table/palettes'
+export { THIN         as TABLE_PALETTE_THIN         } from './table/palettes'
+export { ROUNDED      as TABLE_PALETTE_ROUNDED      } from './table/palettes'
+export { SEMI_ROUNDED as TABLE_PALETTE_SEMI_ROUNDED } from './table/palettes'
+export { ASCII        as TABLE_PALETTE_ASCII        } from './table/palettes'
