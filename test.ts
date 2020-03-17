@@ -258,6 +258,28 @@ segment('table - palettes', [
   [ fmt.table, 'padding (0)',  expectedNoPadding,   labels, rows, { silent: true, padding: 0                              }]
 ])
 
+const formattingLabels:object = {
+  'name': { label: 'Name', format: v => v.toUpperCase() },
+  'value': { label: 'Value', format: Math.round }
+}
+const formattingRows:Array<object> = [
+  { name: 'First', value: 123.4 },
+  { name: 'Second', value: 455.6 }
+]
+
+const expectedFormatting = [
+  '┏━━━━━━━━┳━━━━━━━┓',
+  '┃ Name   ┃ Value ┃',
+  '┡━━━━━━━━╇━━━━━━━┩',
+  '│ FIRST  │ 123   │',
+  '│ SECOND │ 456   │',
+  '└────────┴───────┘'
+].join('\n')
+
+segment('table - formatting', [
+  [ fmt.table, 'generic', expectedFormatting, formattingLabels, formattingRows, { silent: true }],
+])
+
 report()
 
 process.exit(Math.min(total - passed, 1))

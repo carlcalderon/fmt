@@ -5,8 +5,7 @@ import * as palettes from './palettes'
 interface ITableKeyMap {
   [key: string]: {
     label: string
-    align?: string
-    formatter?: (data:any, index:number) => string|null
+    format?: (data:any) => string|null
   }
 }
 
@@ -96,7 +95,13 @@ export default function table (
   result.push(generateSolidRow(ML, MS, MM, MR))
 
   // rows
-  result.push(data.map(row => generateRow(RL, RS, RM, RR, row)).join('\n'))
+  result.push(data.map(row => {
+    const formattedRow = Object.keys(keyMap).reduce((r, l) => {
+      r[l] = keyMap[l].format ? keyMap[l].format!(row[l]) : row[l]
+      return r
+    }, {})
+    return generateRow(RL, RS, RM, RR, formattedRow)
+  }).join('\n'))
 
   // end
   result.push(generateSolidRow(BL, BS, BM, BR))
