@@ -13,10 +13,15 @@
     "verify": "npm run build && npm test && npm publish --dry-run"
   },
   "keywords": [
+    "fmt",
+    "data",
+    "table",
     "string",
     "format",
-    "formating",
-    "fmt"
+    "rewrite",
+    "console",
+    "formatter",
+    "formatting"
   ],
   "author": "Carl Calderon <carl.calderon@gmail.com> (https://github.com/carlcalderon)",
   "license": "MIT",
