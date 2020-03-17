@@ -163,7 +163,6 @@ Each label has the following options:
 const myLabels = {
   'releasedAt': {
     label: 'Released At',
-    align: 'center', // Optional - left, center or right
     format: (dateValue) => new Date(dateValue).toString() // Optional
   }
 }
