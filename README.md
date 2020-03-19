@@ -35,19 +35,19 @@ Each flag is defined using a `%` character followed by the flag and modifiers.
 %[sign][padding][modifiers]<flag>
 ```
 
-|Flag|Modifiers|Description|Notes|
-|----|:--------|:----------|:----|
-|v||Object|Default output if type is recognized, JSON format otherwise|
-|T||Type|`typeof` representation, unless `array`|
-|t||Boolean|Accepts any type such as `0` for false|
-|d|`+`|Integer|Any type of number. `+` modifier adds sign|
-|b||Binary|If passed a string, each character is separated by a single ` `|
-|c||Character|as `charCode`|
-|x||Hexadecimal|Uppercase shorthand defined as uppercase `X`|
-|f|`+`, `.<int>`|Float|See `d` flag. `<int>` defines number of decimals|
-|s|`^`, `_`|String|Uppercase shorthand defined as uppercase `S`|
-|q|`^`, `_`|String|Quoted escaped string|
-|%||Literal `%`||
+|Flag|Modifiers      |Description  |Notes                                                           |
+|----|:--------------|:------------|:---------------------------------------------------------------|
+| v  |               | Object      | Default output if type is recognized, JSON format otherwise    |
+| T  |               | Type        | `typeof` representation, unless `array`                        |
+| t  |               | Boolean     | Accepts any type such as `0` for false                         |
+| d  | `+`           | Integer     | Any type of number. `+` modifier adds sign                     |
+| b  |               | Binary      | If passed a string, each character is separated by a single ` `|
+| c  |               | Character   | as `charCode`                                                  |
+| x  |               | Hexadecimal | Uppercase shorthand defined as uppercase `X`                   |
+| f  | `+`, `.<int>` | Float       | See `d` flag. `<int>` defines number of decimals               |
+| s  | `^`, `_`      | String      | Uppercase shorthand defined as uppercase `S`                   |
+| q  | `^`, `_`      | String      | Quoted escaped string                                          |
+| %  |               | Literal `%` |                                                                |
 
 
 ### Usage
