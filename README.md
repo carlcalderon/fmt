@@ -95,11 +95,11 @@ characters will be filled with spaces.
 _Tip: Padding is especially useful when creating tables._
 
 ```javascript
-// pad to the left
-fmt.sprintf('Value:%8.1f', 2.12) // output: Value:     2.1
+// pad to the left                        |------|
+fmt.sprintf('Value:%8.1f', 2.12) // Value:     2.1
 
-// pad to the right
-fmt.sprintf('%-8.1f is the value', 2.12) // output: 2.1     is the value
+// pad to the right                         |------|
+fmt.sprintf('%-8.1f is the value', 2.12) // 2.1      is the value
 ```
 
 ```javascript
