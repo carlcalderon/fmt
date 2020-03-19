@@ -1,6 +1,6 @@
 # fmt
 
-String formating using commonly used standards
+String formatting using commonly used standards
 
 [![BuildStatus](https://travis-ci.org/carlcalderon/fmt.svg?branch=master)](https://travis-ci.org/carlcalderon/fmt)
 
