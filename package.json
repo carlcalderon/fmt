@@ -6,6 +6,7 @@
   "module": "./lib/esm5/index.js",
   "typings": "./lib/types/index.d.ts",
   "scripts": {
+    "repl": "node -e \"require('repl').start('> ').context.fmt = require('./lib/umd')\"",
     "clean": "shx rm -rf lib/",
     "prebuild": "npm run clean",
     "build": "tsc && rollup -c",
