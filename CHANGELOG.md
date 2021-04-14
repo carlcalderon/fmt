@@ -3,7 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [0.2.3] - TBD
+## [0.3.1] - TBD
+
+## [0.3.0] - 2021-04-15
+- Label order support for tables
 
 ## [0.2.2] - 2020-03-17
 - Separate methods from index
