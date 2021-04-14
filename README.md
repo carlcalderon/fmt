@@ -137,7 +137,7 @@ const rows = [
   { name: 'Finding Nemo', release: 2003, director: 'Andrew Stanton' }
 ]
 
-fmt.table(labsls, rows)
+fmt.table(labels, rows)
 
 // Output:
 // ┏━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━┓
