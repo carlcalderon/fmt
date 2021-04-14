@@ -35,19 +35,19 @@ Each flag is defined using a `%` character followed by the flag and modifiers.
 %[sign][padding][modifiers]<flag>
 ```
 
-|Flag|Modifiers|Description|Notes|
-|----|:--------|:----------|:----|
-|v||Object|Default output if type is recognized, JSON format otherwise|
-|T||Type|`typeof` representation, unless `array`|
-|t||Boolean|Accepts any type such as `0` for false|
-|d|`+`|Integer|Any type of number. `+` modifier adds sign|
-|b||Binary|If passed a string, each character is separated by a single ` `|
-|c||Character|as `charCode`|
-|x||Hexadecimal|Uppercase shorthand defined as uppercase `X`|
-|f|`+`, `.<int>`|Float|See `d` flag. `<int>` defines number of decimals|
-|s|`^`, `_`|String|Uppercase shorthand defined as uppercase `S`|
-|q|`^`, `_`|String|Quoted escaped string|
-|%||Literal `%`||
+|Flag|Modifiers      |Description  |Notes                                                           |
+|----|:--------------|:------------|:---------------------------------------------------------------|
+| v  |               | Object      | Default output if type is recognized, JSON format otherwise    |
+| T  |               | Type        | `typeof` representation, unless `array`                        |
+| t  |               | Boolean     | Accepts any type such as `0` for false                         |
+| d  | `+`           | Integer     | Any type of number. `+` modifier adds sign                     |
+| b  |               | Binary      | If passed a string, each character is separated by a single ` `|
+| c  |               | Character   | as `charCode`                                                  |
+| x  |               | Hexadecimal | Uppercase shorthand defined as uppercase `X`                   |
+| f  | `+`, `.<int>` | Float       | See `d` flag. `<int>` defines number of decimals               |
+| s  | `^`, `_`      | String      | Uppercase shorthand defined as uppercase `S`                   |
+| q  | `^`, `_`      | String      | Quoted escaped string                                          |
+| %  |               | Literal `%` |                                                                |
 
 
 ### Usage
@@ -95,11 +95,11 @@ characters will be filled with spaces.
 _Tip: Padding is especially useful when creating tables._
 
 ```javascript
-// pad to the left
-fmt.sprintf('Value:%8.1f', 2.12) // output: Value:     2.1
+// pad to the left                        |------|
+fmt.sprintf('Value:%8.1f', 2.12) // Value:     2.1
 
-// pad to the right
-fmt.sprintf('%-8.1f is the value', 2.12) // output: 2.1     is the value
+// pad to the right                         |------|
+fmt.sprintf('%-8.1f is the value', 2.12) // 2.1      is the value
 ```
 
 ```javascript
@@ -161,11 +161,31 @@ Each label has the following options:
 
 ```javascript
 const myLabels = {
+  'name': {
+    label: 'Movie Name'
+  },
   'releasedAt': {
     label: 'Released At',
     format: (dateValue) => new Date(dateValue).toString() // Optional
   }
 }
+```
+
+The column order can be specified by providing the label definitions as an
+array where each mapped key has to be defined as the property `key` instead.
+
+```javascript
+const myLabels = [
+  {
+    key: 'releasedAt',
+    label: 'Released At',
+    format: (dateValue) => new Date(dateValue).toString() // Optional
+  },
+  {
+    key: 'name',
+    label: 'Movie Name'
+  }
+]
 ```
 
 #### Configuration

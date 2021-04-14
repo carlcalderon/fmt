@@ -9,6 +9,13 @@ interface ITableKeyMap {
   }
 }
 
+interface ITableKey {
+  key: string
+  label: string
+  format?: (data:any) => string|null
+}
+
+
 interface ITableData {
   [key: string]: any
 }
@@ -26,7 +33,7 @@ const defaultConfig:ITableConfig = {
 }
 
 export default function table (
-  keyMap:ITableKeyMap,
+  keyMap:ITableKeyMap|Array<ITableKey>,
   data:Array<ITableData>,
   configuration:ITableConfig=defaultConfig
 ): string {
@@ -43,19 +50,25 @@ export default function table (
     BL, BS, BM, BR,
   ] = config.palette.split('')
 
+  // Convert object based keyMap to array based keyMap
+  const keys:Array<ITableKey> =
+    Array.isArray(keyMap) ? keyMap : Object.keys(keyMap).map(key => {
+      return { key, ...keyMap[key] }
+    })
+
   // Figure out how many characters the longest value/label is per column
-  const lengthMap = new Map(Object.keys(keyMap).map(key => (
+  const lengthMap = new Map(keys.map(({key, label}) => (
     [
       key,
       data.reduce((longest, item) => {
         const itemLength:number = String(item[key]).length
         return Math.max(longest, itemLength)
-      }, keyMap[key].label.length) + config.padding * 2
+      }, label.length) + config.padding * 2
     ]
   )))
 
   // Generate placeholder whitespace for each column width
-  const columns:Array<string> = Object.keys(keyMap).map(key => (
+  const columns:Array<string> = keys.map(({key}) => (
     sprintf(`%${lengthMap.get(key)}s`,' ')
   ))
 
@@ -70,7 +83,7 @@ export default function table (
   const generateRow = (
     left:string, separator:string, middle:string, right:string, row:ITableData
   ):string => (
-    left + Object.keys(keyMap).map(key => (
+    left + keys.map(({key}) => (
       sprintf(
         `%${config.padding}s%-${Number(lengthMap.get(key)) - config.padding}s`,
         '',
@@ -86,8 +99,8 @@ export default function table (
   result.push(generateSolidRow(TL, TS, TM, TR))
 
   // labels
-  result.push(generateRow(LL, LS, LM, LR, Object.keys(keyMap).reduce((r, l) => {
-    r[l] = keyMap[l].label
+  result.push(generateRow(LL, LS, LM, LR, keys.reduce((r, {key, label}) => {
+    r[key] = label
     return r
   }, {})))
 
@@ -96,8 +109,8 @@ export default function table (
 
   // rows
   result.push(data.map(row => {
-    const formattedRow = Object.keys(keyMap).reduce((r, l) => {
-      r[l] = keyMap[l].format ? keyMap[l].format!(row[l]) : row[l]
+    const formattedRow = keys.reduce((r, {key, format}) => {
+      r[key] = format ? format(row[key]) : row[key]
       return r
     }, {})
     return generateRow(RL, RS, RM, RR, formattedRow)
