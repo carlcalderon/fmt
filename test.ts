@@ -262,6 +262,11 @@ const formattingLabels:object = {
   'name': { label: 'Name', format: v => v.toUpperCase() },
   'value': { label: 'Value', format: Math.round }
 }
+
+const formattingLabelsArray:Array<object> = [
+  { key: 'name', label: 'Name', format: v => v.toUpperCase() },
+  { key: 'value', label: 'Value', format: Math.round }
+]
 const formattingRows:Array<object> = [
   { name: 'First', value: 123.4 },
   { name: 'Second', value: 455.6 }
@@ -278,7 +283,129 @@ const expectedFormatting = [
 
 segment('table - formatting', [
   [ fmt.table, 'generic', expectedFormatting, formattingLabels, formattingRows, { silent: true }],
+  [ fmt.table, 'label array', expectedFormatting, formattingLabelsArray, formattingRows, { silent: true }],
 ])
+
+const orderLabelsObjectStrings = {
+  "a": { label: 'A' },
+  "b": { label: 'B' },
+  "c": { label: 'C' }
+}
+
+const orderRowsStrings = [
+  { a: 'A1', b: 'B1', c: 'C1' },
+  { a: 'A2', b: 'B2', c: 'C2' },
+  { a: 'A3', b: 'B3', c: 'C3' }
+]
+
+const orderLabelsObjectNumbers = {
+  2: { label: '2' },
+  1: { label: '1' },
+  3: { label: '3' }
+}
+
+const orderRowsNumbers = [
+  { 1: '11', 2: '21', 3: '31' },
+  { 1: '12', 2: '22', 3: '32' },
+  { 1: '13', 2: '23', 3: '33' }
+]
+
+const orderLabelsObjectStringsAndNumbers = {
+  "b": { label: 'B' },
+  2: { label: '2' },
+  "a": { label: 'A' },
+  1: { label: '1' },
+  3: { label: '3' },
+  "c": { label: 'C' }
+}
+
+const orderLabelsArray = [
+  { key: 'b', label: 'B'},
+  { key: 2, label: '2' },
+  { key: 'a', label: 'A'},
+  { key: 1, label: '1' },
+  { key: 3, label: '3' },
+  { key: 'c', label: 'C'},
+]
+
+const orderRowsStringsAndNumbers = [...orderRowsStrings, ...orderRowsNumbers]
+const expectedOrderObjectStrings = [
+  '┏━━━━┳━━━━┳━━━━┓',
+  '┃ A  ┃ B  ┃ C  ┃',
+  '┡━━━━╇━━━━╇━━━━┩',
+  '│ A1 │ B1 │ C1 │',
+  '│ A2 │ B2 │ C2 │',
+  '│ A3 │ B3 │ C3 │',
+  '└────┴────┴────┘'
+].join('\n')
+
+const expectedOrderObjectNumbers = [
+  '┏━━━━┳━━━━┳━━━━┓',
+  '┃ 1  ┃ 2  ┃ 3  ┃',
+  '┡━━━━╇━━━━╇━━━━┩',
+  '│ 11 │ 21 │ 31 │',
+  '│ 12 │ 22 │ 32 │',
+  '│ 13 │ 23 │ 33 │',
+  '└────┴────┴────┘'
+].join('\n')
+
+const expectedOrderObjectStringsAndNumbers = [
+  '┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓',
+  '┃ 1         ┃ 2         ┃ 3         ┃ B         ┃ A         ┃ C         ┃',
+  '┡━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━┩',
+  '│ undefined │ undefined │ undefined │ B1        │ A1        │ C1        │',
+  '│ undefined │ undefined │ undefined │ B2        │ A2        │ C2        │',
+  '│ undefined │ undefined │ undefined │ B3        │ A3        │ C3        │',
+  '│ 11        │ 21        │ 31        │ undefined │ undefined │ undefined │',
+  '│ 12        │ 22        │ 32        │ undefined │ undefined │ undefined │',
+  '│ 13        │ 23        │ 33        │ undefined │ undefined │ undefined │',
+  '└───────────┴───────────┴───────────┴───────────┴───────────┴───────────┘'
+].join('\n')
+
+const expectedOrderArray = [
+  '┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓',
+  '┃ B         ┃ 2         ┃ A         ┃ 1         ┃ 3         ┃ C         ┃',
+  '┡━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━┩',
+  '│ B1        │ undefined │ A1        │ undefined │ undefined │ C1        │',
+  '│ B2        │ undefined │ A2        │ undefined │ undefined │ C2        │',
+  '│ B3        │ undefined │ A3        │ undefined │ undefined │ C3        │',
+  '│ undefined │ 21        │ undefined │ 11        │ 31        │ undefined │',
+  '│ undefined │ 22        │ undefined │ 12        │ 32        │ undefined │',
+  '│ undefined │ 23        │ undefined │ 13        │ 33        │ undefined │',
+  '└───────────┴───────────┴───────────┴───────────┴───────────┴───────────┘'
+].join('\n')
+
+segment('table - key order', [
+  [ fmt.table, 'object strings',             expectedOrderObjectStrings,           orderLabelsObjectStrings,           orderRowsStrings,           { silent: true }],
+  [ fmt.table, 'object numbers',             expectedOrderObjectNumbers,           orderLabelsObjectNumbers,           orderRowsNumbers,           { silent: true }],
+  [ fmt.table, 'object strings and numbers', expectedOrderObjectStringsAndNumbers, orderLabelsObjectStringsAndNumbers, orderRowsStringsAndNumbers, { silent: true }],
+  [ fmt.table, 'array',                      expectedOrderArray,                   orderLabelsArray,                   orderRowsStringsAndNumbers, { silent: true }],
+])
+
+const orderLabelsLimited = [
+  { key: 'a', label: 'A'},
+  { key: 2, label: '2' },
+  { key: 1, label: '1' },
+  { key: 'b', label: 'B'},
+]
+
+const expectedOrderLimited = [
+  '┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓',
+  '┃ A         ┃ 2         ┃ 1         ┃ B         ┃',
+  '┡━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━┩',
+  '│ A1        │ undefined │ undefined │ B1        │',
+  '│ A2        │ undefined │ undefined │ B2        │',
+  '│ A3        │ undefined │ undefined │ B3        │',
+  '│ undefined │ 21        │ 11        │ undefined │',
+  '│ undefined │ 22        │ 12        │ undefined │',
+  '│ undefined │ 23        │ 13        │ undefined │',
+  '└───────────┴───────────┴───────────┴───────────┘'
+].join('\n')
+
+segment('table - limited keys', [
+  [ fmt.table, 'limited', expectedOrderLimited, orderLabelsLimited, orderRowsStringsAndNumbers, { silent: true }]
+])
+
 
 report()
 

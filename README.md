@@ -161,11 +161,31 @@ Each label has the following options:
 
 ```javascript
 const myLabels = {
+  'name': {
+    label: 'Movie Name'
+  },
   'releasedAt': {
     label: 'Released At',
     format: (dateValue) => new Date(dateValue).toString() // Optional
   }
 }
+```
+
+The column order can be specified by providing the label definitions as an
+array where each mapped key has to be defined as the property `key` instead.
+
+```javascript
+const myLabels = [
+  {
+    key: 'releasedAt',
+    label: 'Released At',
+    format: (dateValue) => new Date(dateValue).toString() // Optional
+  },
+  {
+    key: 'name',
+    label: 'Movie Name'
+  }
+]
 ```
 
 #### Configuration
