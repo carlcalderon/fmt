@@ -102,7 +102,7 @@ export default function table (
   result.push(generateRow(LL, LS, LM, LR, keys.reduce((r, {key, label}) => {
     r[key] = label
     return r
-  }, {})))
+  }, {} as Record<string, unknown>)))
 
   // mid
   result.push(generateSolidRow(ML, MS, MM, MR))
@@ -112,7 +112,7 @@ export default function table (
     const formattedRow = keys.reduce((r, {key, format}) => {
       r[key] = format ? format(row[key]) : row[key]
       return r
-    }, {})
+    }, {} as Record<string, unknown>)
     return generateRow(RL, RS, RM, RR, formattedRow)
   }).join('\n'))
 

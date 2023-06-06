@@ -9,7 +9,6 @@
     "declarationDir": "./lib/types",
     "experimentalDecorators": true,
     "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
     "strictNullChecks": true
   },
   "include": [
