@@ -17,7 +17,7 @@ export default function (flag:string, mods:modifiers, value:string):string {
   }
 
   if (quotes) {
-    return `"${escape(result)}"`
+    return `"${result.replace('"', '\"')}"`
   }
   return result
 }

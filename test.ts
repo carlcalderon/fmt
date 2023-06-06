@@ -120,19 +120,21 @@ segment('sprintf - hexadecimal', [
 ])
 
 segment('sprintf - strings', [
-  [ fmt.sprintf, 'single',           'abc',         '%s',         'abc'        ],
-  [ fmt.sprintf, 'quotes',           '"abc"',       '%q',         'abc'        ],
-  [ fmt.sprintf, 'padding left',     '   abc',      '%6s',        'abc'        ],
-  [ fmt.sprintf, 'padding right',    'abc   ',      '%-6s',       'abc'        ],
-  [ fmt.sprintf, 'insert',           'aBcdEfgHi',   'aBc%sgHi',   'dEf'        ],
-  [ fmt.sprintf, 'lowercase',        'abcdefghi',   'abc%_sghi',  'DEF'        ],
-  [ fmt.sprintf, 'lowercase quotes', 'abc"def"ghi', 'abc%_qghi',  'DEF'        ],
-  [ fmt.sprintf, 'whitespace',       'abc def ghi', 'abc %s ghi', 'def'        ],
-  [ fmt.sprintf, 'uppercase (%S)',   'abcDEFghi',   'abc%Sghi',   'def'        ],
-  [ fmt.sprintf, 'uppercase (%Q)',   'abc"DEF"ghi', 'abc%Qghi',   'def'        ],
-  [ fmt.sprintf, 'uppercase (%^s)',  'abcDEFghi',   'abc%^sghi',  'def'        ],
-  [ fmt.sprintf, 'uppercase (%^q)',  'abc"DEF"ghi', 'abc%^qghi',  'def'        ],
-  [ fmt.sprintf, 'multiple',         'hello!',      '%s%s',       'hel', 'lo!' ]
+  [ fmt.sprintf, 'single',               'abc',           '%s',         'abc'        ],
+  [ fmt.sprintf, 'quotes',               '"abc"',         '%q',         'abc'        ],
+  [ fmt.sprintf, 'quotes inline',        '"a"b"c"',       '%q',         'a"b"c'      ],
+  [ fmt.sprintf, 'padding left',         '   abc',        '%6s',        'abc'        ],
+  [ fmt.sprintf, 'padding right',        'abc   ',        '%-6s',       'abc'        ],
+  [ fmt.sprintf, 'insert',               'aBcdEfgHi',     'aBc%sgHi',   'dEf'        ],
+  [ fmt.sprintf, 'lowercase',            'abcdefghi',     'abc%_sghi',  'DEF'        ],
+  [ fmt.sprintf, 'lowercase quotes',     'abc"def"ghi',   'abc%_qghi',  'DEF'        ],
+  [ fmt.sprintf, 'whitespace',           'abc def ghi',   'abc %s ghi', 'def'        ],
+  [ fmt.sprintf, 'uppercase (%S)',       'abcDEFghi',     'abc%Sghi',   'def'        ],
+  [ fmt.sprintf, 'uppercase (%Q)',       'abc"DEF"ghi',   'abc%Qghi',   'def'        ],
+  [ fmt.sprintf, 'uppercase (%Q) quote', 'abc"D"E"F"ghi', 'abc%Qghi',   'd"e"f'      ],
+  [ fmt.sprintf, 'uppercase (%^s)',      'abcDEFghi',     'abc%^sghi',  'def'        ],
+  [ fmt.sprintf, 'uppercase (%^q)',      'abc"DEF"ghi',   'abc%^qghi',  'def'        ],
+  [ fmt.sprintf, 'multiple',             'hello!',        '%s%s',       'hel', 'lo!' ]
 ])
 
 segment('sprintf - floats', [
