@@ -10,7 +10,7 @@
     "clean": "shx rm -rf lib/",
     "prebuild": "npm run clean",
     "build": "tsc && rollup -c",
-    "test": "tsc --module system --outFile /dev/stdout test.ts | node -",
+    "test": "tsc --outFile /dev/stdout test.ts | node -",
     "verify": "npm run build && npm test && npm publish --dry-run"
   },
   "keywords": [
