@@ -3,7 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [0.3.2] - TBD
+## [0.4.0-rc.0] - 2023-06-06
+- Dependency updates
+- Remove Travis CI
+- Remove deprecated string replacer `escape()` for quotes
 
 ## [0.3.1] - 2022-01-21
 - Dependency updates
