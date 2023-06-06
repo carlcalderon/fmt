@@ -11,12 +11,12 @@ let passed:number = 0
 function expect (method:Function, description:string, result:string, ...a:Array<any>):boolean {
   const r:string = method.apply(this, a)
   if (r !== result) {
-    console.log('\033[30;41m FAIL \033[0m\t\033[31m' + description + '\033[0m')
+    console.log('\x1B[30;41m FAIL \x1B[0m\t\x1B[31m' + description + '\x1B[0m')
     console.log('\t\t' + a.join(', '))
     console.log(`\t\tExpected: ${result} Received: ${r}`)
     return false
   }
-  console.log('\033[30;42m PASS \033[0m\t' + description)
+  console.log('\x1B[30;42m PASS \x1B[0m\t' + description)
   return true
 }
 
@@ -36,18 +36,18 @@ function segment (label:string, list:Array<Array<any>>):void {
   total += r.total
   passed += r.passed
   if (r.total !== r.passed) {
-    console.log('\t\033[31mFAILED\033[0m\n')
+    console.log('\t\x1B[31mFAILED\x1B[0m\n')
   } else {
-    console.log('\t\033[32mPASSED\033[0m\n')
+    console.log('\t\x1B[32mPASSED\x1B[0m\n')
   }
 }
 
 function report ():void {
   if (0 === total - passed) {
-    console.error('\033[32mPASSED\033[0m')
+    console.error('\x1B[32mPASSED\x1B[0m')
     console.error(`${passed} / ${total} tests passed`)
   } else {
-    console.error('\033[31mFAILED\033[0m')
+    console.error('\x1B[31mFAILED\x1B[0m')
     console.error(`${passed} / ${total} tests passed`)
   }
 }
