@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Dependency updates
 - Remove Travis CI
 - Remove deprecated string replacer `escape()` for quotes
+- Add GitHub actions for test
 
 ## [0.3.1] - 2022-01-21
 - Dependency updates
